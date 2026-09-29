@@ -1,164 +1,21 @@
 {
   "categories": [
-    {
-      "id": "food",
-      "name": "Food",
-      "subcategories": [
-        "Groceries",
-        "Restaurants",
-        "Delivery",
-        "Snacks",
-        "Coffee",
-        "Other"
-      ]
-    },
-    {
-      "id": "bills",
-      "name": "Bills",
-      "subcategories": [
-        "Electricity",
-        "Water",
-        "Gas",
-        "Internet",
-        "Phone",
-        "Insurance",
-        "Other"
-      ]
-    },
-    {
-      "id": "utilities",
-      "name": "Utilities",
-      "subcategories": [
-        "Electricity",
-        "Water",
-        "Gas",
-        "Maintenance",
-        "Other"
-      ]
-    },
-    {
-      "id": "rent",
-      "name": "Rent/Home",
-      "subcategories": [
-        "Rent",
-        "Mortgage",
-        "Property Tax",
-        "Home Repair",
-        "Furniture",
-        "Other"
-      ]
-    },
-    {
-      "id": "transport",
-      "name": "Transport",
-      "subcategories": [
-        "Fuel",
-        "Public Transport",
-        "Taxi/Uber",
-        "Car Maintenance",
-        "Parking",
-        "Registration",
-        "Other"
-      ]
-    },
-    {
-      "id": "shopping",
-      "name": "Shopping",
-      "subcategories": [
-        "Clothing",
-        "Electronics",
-        "Home",
-        "Books",
-        "Personal Care",
-        "Other"
-      ]
-    },
-    {
-      "id": "health",
-      "name": "Health",
-      "subcategories": [
-        "Medical",
-        "Pharmacy",
-        "Dental",
-        "Gym",
-        "Wellness",
-        "Other"
-      ]
-    },
-    {
-      "id": "education",
-      "name": "Education",
-      "subcategories": [
-        "Tuition",
-        "Books",
-        "Courses",
-        "Materials",
-        "Exams",
-        "Other"
-      ]
-    },
-    {
-      "id": "entertainment",
-      "name": "Entertainment",
-      "subcategories": [
-        "Movies",
-        "Gaming",
-        "Events",
-        "Streaming",
-        "Hobbies",
-        "Other"
-      ]
-    },
-    {
-      "id": "travel",
-      "name": "Travel",
-      "subcategories": [
-        "Flights",
-        "Hotels",
-        "Trains",
-        "Tours",
-        "Lodging",
-        "Other"
-      ]
-    },
-    {
-      "id": "investments",
-      "name": "Investments",
-      "subcategories": [
-        "Stocks",
-        "Bonds",
-        "Mutual Funds",
-        "Crypto",
-        "Real Estate",
-        "Other"
-      ]
-    },
-    {
-      "id": "personal",
-      "name": "Personal",
-      "subcategories": [
-        "Gifts",
-        "Donations",
-        "Personal Care",
-        "Subscriptions",
-        "Other"
-      ]
-    },
-    {
-      "id": "other",
-      "name": "Other",
-      "subcategories": [
-        "Miscellaneous"
-      ]
-    }
+    {"name": "Food", "subcategories": ["Groceries", "Restaurants", "Delivery", "Coffee", "Other"]},
+    {"name": "Groceries", "subcategories": ["Fruits", "Vegetables", "Household", "Dairy", "Other"]},
+    {"name": "Bills", "subcategories": ["Electricity", "Water", "Gas", "Internet", "Phone", "Insurance", "Other"]},
+    {"name": "Utilities", "subcategories": ["Electricity", "Water", "Gas", "Maintenance", "Other"]},
+    {"name": "Rent/Home", "subcategories": ["Rent", "Mortgage", "Property Tax", "Home Repair", "Furniture", "Other"]},
+    {"name": "Transport", "subcategories": ["Fuel", "Public Transport", "Taxi", "Parking", "Car Maintenance", "Other"]},
+    {"name": "Fuel", "subcategories": ["Petrol", "Diesel", "CNG", "Other"]},
+    {"name": "Shopping", "subcategories": ["Clothing", "Electronics", "Home", "Books", "Personal Care", "Other"]},
+    {"name": "Health", "subcategories": ["Medical", "Pharmacy", "Dental", "Gym", "Wellness", "Other"]},
+    {"name": "Education", "subcategories": ["Tuition", "Books", "Courses", "Materials", "Other"]},
+    {"name": "Entertainment", "subcategories": ["Movies", "Gaming", "Streaming", "Events", "Hobbies", "Other"]},
+    {"name": "Travel", "subcategories": ["Flights", "Hotels", "Trains", "Tours", "Other"]},
+    {"name": "Insurance", "subcategories": ["Health", "Vehicle", "Life", "Home", "Other"]},
+    {"name": "Investments", "subcategories": ["Stocks", "Mutual Funds", "Crypto", "Real Estate", "Other"]},
+    {"name": "Personal", "subcategories": ["Gifts", "Donations", "Subscriptions", "Personal Care", "Other"]},
+    {"name": "Other", "subcategories": ["Miscellaneous"]}
   ],
-  "payment_methods": [
-    "Cash",
-    "UPI",
-    "Credit Card",
-    "Debit Card",
-    "Bank Transfer",
-    "Wallet",
-    "Other"
-  ]
+  "payment_methods": ["Cash", "UPI", "Credit Card", "Debit Card", "Bank Transfer", "Wallet", "Other"]
 }

@@ -1,0 +1,9 @@
+{
+  "app_name": "Expense Tracker",
+  "default_scope": "PERSONAL",
+  "default_payment_method": "UPI",
+  "support_group_required": true,
+  "min_amount": 0.01,
+  "max_amount": 2000000.0,
+  "allowed_scopes": ["PERSONAL", "FAMILY"]
+}
