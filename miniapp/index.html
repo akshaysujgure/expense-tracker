@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Expense Tracker</title>
+<link rel="stylesheet" href="src/styles.css" />
+</head>
+<body>
+<div id="app">
+<header class="topbar">
+<h1>Expense Tracker</h1>
+<button id="addExpenseBtn" class="primary">Add Expense</button>
+</header>
+<main>
+<section id="homeScreen" class="screen active">
+<div class="stats-grid">
+<div class="stat-card">
+<label>Current month</label>
+<strong id="monthTotal">₹0</strong>
+</div>
+<div class="stat-card">
+<label>Today</label>
+<strong id="todayTotal">₹0</strong>
+</div>
+<div class="stat-card">
+<label>Personal</label>
+<strong id="personalTotal">₹0</strong>
+</div>
+<div class="stat-card">
+<label>Family</label>
+<strong id="familyTotal">₹0</strong>
+</div>
+</div>
+<div class="panel">
+<h3>Category summary</h3>
+<ul id="categorySummary"></ul>
+</div>
+<div class="panel">
+<h3>Recent transactions</h3>
+<div id="recentTransactions"></div>
+</div>
+</section>
+<section id="addScreen" class="screen">
+<form id="expenseForm">
+<label>
+             Amount
+<input type="number" name="amount" step="0.01" min="0.01" required />
+</label>
+<label>
+             Scope
+<select name="scope">
+<option value="PERSONAL">Personal</option>
+<option value="FAMILY">Family</option>
+</select>
+</label>
+<label>
+             Category
+<select name="category" id="categorySelect"></select>
+</label>
+<label>
+             Subcategory
+<select name="subcategory" id="subcategorySelect"></select>
+</label>
+<label>
+             Payment method
+<select name="payment_method" id="paymentMethodSelect"></select>
+</label>
+<label>
+             Date
+<input type="date" name="date" required />
+</label>
+<label>
+             Merchant
+<input type="text" name="merchant" />
+</label>
+<label>
+             Note
+<input type="text" name="note" />
+</label>
+<button type="submit" class="primary">Save Expense</button>
+</form>
+</section>
+<section id="transactionsScreen" class="screen">
+<h3>Transactions</h3>
+<div id="transactionList"></div>
+</section>
+<section id="trendsScreen" class="screen">
+<h3>Trends</h3>
+<div id="trendSummary"></div>
+</section>
+</main>
+<nav class="bottom-nav">
+<button class="nav-btn active" data-target="homeScreen">Home</button>
+<button class="nav-btn" data-target="addScreen">Add</button>
+<button class="nav-btn" data-target="transactionsScreen">Transactions</button>
+<button class="nav-btn" data-target="trendsScreen">Trends</button>
+</nav>
+</div>
+<script type="module" src="src/app.js"></script>
+</body>
+</html>
