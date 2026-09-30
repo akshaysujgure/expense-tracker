@@ -1,0 +1,7 @@
+name = "expense-tracker-ingestion"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+[vars]
+GITHUB_OWNER = "akshaysujgure"
+GITHUB_REPO = "expense-tracker"
+GITHUB_BRANCH = "main"
