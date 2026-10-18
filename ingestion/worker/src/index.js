@@ -1,4 +1,74 @@
 import crypto from "node:crypto";
+
+function toBase64(bytes) {
+  if (typeof Buffer !== "undefined") {
+    return Buffer.from(bytes).toString("base64");
+  }
+  let binary = "";
+  bytes.forEach((byte) => {
+    binary += String.fromCharCode(byte);
+  });
+  return btoa(binary);
+}
+
+function fromBase64(value) {
+  if (typeof Buffer !== "undefined") {
+    return Uint8Array.from(Buffer.from(value, "base64"));
+  }
+  const binary = atob(value);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i += 1) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return bytes;
+}
+
+async function deriveEncryptionKey(secret) {
+  const encoder = new TextEncoder();
+  const keyMaterial = await crypto.subtle.importKey(
+    "raw",
+    encoder.encode(secret),
+    "PBKDF2",
+    false,
+    ["deriveKey"]
+  );
+
+  return crypto.subtle.deriveKey(
+    {
+      name: "PBKDF2",
+      salt: encoder.encode("expense-tracker-v1"),
+      iterations: 100000,
+      hash: "SHA-256"
+    },
+    keyMaterial,
+    { name: "AES-GCM", length: 256 },
+    false,
+    ["encrypt", "decrypt"]
+  );
+}
+
+async function encryptTransaction(record, secretKey) {
+  if (!secretKey) {
+    throw new Error("Missing TRANSACTION_ENCRYPTION_KEY in worker secrets");
+  }
+
+  const encoder = new TextEncoder();
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const key = await deriveEncryptionKey(secretKey);
+  const ciphertext = await crypto.subtle.encrypt(
+    { name: "AES-GCM", iv },
+    key,
+    encoder.encode(JSON.stringify(record))
+  );
+
+  return {
+    encrypted: true,
+    algorithm: "AES-GCM",
+    iv: toBase64(iv),
+    ciphertext: toBase64(new Uint8Array(ciphertext))
+  };
+}
+
 function parseInitData(initDataString) {
  const params = new URLSearchParams(initDataString);
  const data = {};
@@ -139,8 +209,15 @@ export default {
        note: String(body.note || ""),
        status: "ACTIVE"
      };
-     await writeToGithub(tx, env);
-     return new Response(JSON.stringify({ ok: true, transaction_id: tx.transaction_id, message: "Expense stored successfully" }), {
+
+    const encryptedRecord = {
+       ...tx,
+       encrypted: true,
+       encrypted_payload: await encryptTransaction(tx, env.TRANSACTION_ENCRYPTION_KEY)
+    };
+
+    await writeToGithub(encryptedRecord, env);
+    return new Response(JSON.stringify({ ok: true, transaction_id: tx.transaction_id, message: "Expense stored securely" }), {
        headers: { "Content-Type": "application/json" }
      });
    } catch (error) {
