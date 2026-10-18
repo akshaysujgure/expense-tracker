@@ -68,6 +68,12 @@ function populatePaymentMethods() {
 function bindFormSubmit() {
  document.getElementById("expenseForm").addEventListener("submit", async (event) => {
    event.preventDefault();
+
+   if (!telegram.isAvailable || !telegram.initData) {
+     alert("This Mini App must be opened from Telegram to save expenses.");
+     return;
+   }
+
    const form = event.target;
    const formData = new FormData(form);
    const payload = {

@@ -107,6 +107,12 @@ export default {
          headers: { "Content-Type": "application/json" }
        });
      }
+     if (!chat || !chat.id) {
+       return new Response(JSON.stringify({ error: "Family scope requires a trusted Telegram chat context" }), {
+         status: 400,
+         headers: { "Content-Type": "application/json" }
+       });
+     }
      const amount = Number(body.amount);
      if (!Number.isFinite(amount) || amount <= 0) {
        return new Response(JSON.stringify({ error: "Invalid amount" }), {
@@ -114,12 +120,13 @@ export default {
          headers: { "Content-Type": "application/json" }
        });
      }
+     const requestDate = typeof body.date === "string" && body.date ? body.date : new Date().toISOString().slice(0, 10);
      const tx = {
        transaction_id: createTransactionId(),
-       family_id: chat && chat.id ? String(chat.id) : String(user.id),
+       family_id: String(chat.id),
        telegram_user_id: String(user.id),
        timestamp: new Date().toISOString(),
-       date: new Date().toISOString().slice(0, 10),
+       date: requestDate,
        amount,
        type: "expense",
        scope,
